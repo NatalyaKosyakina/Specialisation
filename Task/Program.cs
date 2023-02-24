@@ -22,7 +22,6 @@ string[] SelectByLength(int lengthToFind, string[] array)
     {
         if (array[i].Length <= lengthToFind)
         {
-
             count++;
         }
     }
@@ -52,10 +51,10 @@ string[] SelectByLength(int lengthToFind, string[] array)
 
 Console.WriteLine("Введите элементы массива через пробел: ");
 string[] array1 = Console.ReadLine()!.Split(" ");
+PrintArray(array1);
+Console.Write(" -> ");
 
 string[] array2 = SelectByLength(3, array1);
 
-PrintArray(array1);
-Console.Write(" -> ");
 PrintArray(array2);
 Console.WriteLine();
