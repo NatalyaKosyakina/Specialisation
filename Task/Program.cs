@@ -7,7 +7,7 @@
 void PrintArray(string[] array)
 {
     Console.Write("[");
-    for (int i = 0; i < array.Length-1; i++)
+    for (int i = 0; i < array.Length - 1; i++)
     {
         Console.Write($"{array[i]}, ");
     }
@@ -15,16 +15,47 @@ void PrintArray(string[] array)
 }
 
 // Функция, выделяющая строки нужной длины.
-
-// Ввод данных пользователем и вызов функций.
-Console.WriteLine("Сколько элементов Вы хотите ввести?");
-int lengthArray1 = Convert.ToInt32(Console.ReadLine());
-
-string[] array1 = new string[lengthArray1];
-Console.WriteLine("Введите элементы массива через пробел: ");
-for (int i = 0; i < lengthArray1; i++)
+string[] SelectByLength(int lengthToFind, string[] array)
 {
-    array1[i] = Console.ReadLine();
+    int count = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= lengthToFind)
+        {
+
+            count++;
+        }
+    }
+    if (count == 0)
+    {
+        string[] arrayRes = new string[] { "Error" };
+        return arrayRes;
+    }
+    else
+    {
+        string[] arrayRes = new string[count];
+        count = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i].Length <= lengthToFind)
+            {
+                arrayRes[count] = array[i];
+                count++;
+            }
+        }
+        return arrayRes;
+    }
+
 }
 
+// Ввод данных пользователем и вызов функций.
+
+Console.WriteLine("Введите элементы массива через пробел: ");
+string[] array1 = Console.ReadLine()!.Split(" ");
+
+string[] array2 = SelectByLength(3, array1);
+
 PrintArray(array1);
+Console.Write(" -> ");
+PrintArray(array2);
+Console.WriteLine();
